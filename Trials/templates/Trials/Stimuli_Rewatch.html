@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+     Again, please {{stimuli}} <div>&nbsp;</div>
+
+{% if is_image == 1 %}
+
+     <img src="{% static stim_path %}" width="60%" height="60%"/>     
+{% else %}
+    <video controls  width="724" height="454">
+        <source  src="{% static stim_path %}" type="video/mp4" >
+        Your browser does not support the video tag.
+    </video>
+{% endif %}
+
+<div>&nbsp;</div>
+<script>
+
+
+</script>
+
+{% next_button %}
+
+
+<div>&nbsp;</div>
+
+{% endblock %}

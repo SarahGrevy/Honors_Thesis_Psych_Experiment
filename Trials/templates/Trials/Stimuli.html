@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} {% endblock %}
+{{stim_path}}
+
+{% block content %}
+
+     Please {{stimuli}} <div>&nbsp;</div>
+
+{% if is_image == 1 %}
+   <!-- <img src="{% static stim_path %}"/> --> 
+     <img src="{% static stim_path %}" width="75%" height="75%"/>
+{% else %}
+    <video controls  width="724" height="454">
+        <source  src="{% static stim_path %}" type="video/mp4" >
+        Your browser does not support the video tag.
+    </video>
+{% endif %}
+
+<input type="hidden" name="Stimulus_displayed" id = "id1" />
+
+
+<script>
+    let x = {{stim_path|json}}
+    document.getElementById("id1").value = x
+</script>
+
+{{ form.Stimulus_displayed.errors }}
+
+<div>&nbsp;</div>
+{% next_button %}
+
+<div>&nbsp;</div>
+
+{% endblock %}

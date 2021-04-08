@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+Please answer the following question <b> ALONE. </b>Click next when you are done.<div>&nbsp;</div>
+
+
+<strong>I think that my partner and I are on the same wavelength with regard to our judgments of the {{image_video}}.&nbsp;</strong>
+<div>&nbsp;</div>
+
+{% formfield player.PartnerAgreement %}
+
+
+
+
+{% next_button %}
+
+<div>&nbsp;</div>
+
+{% endblock %}
