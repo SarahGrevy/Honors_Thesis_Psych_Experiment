@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+Again, please watch the video below by pressing play. Once you have finished watching the video, click next.
+
+<div>&nbsp;</div>
+<video controls  width="724" height="454">
+        <source  src="{% static "my_folder2/priming.mp4" %}" type="video/mp4" >
+        Your browser does not support the video tag.
+    </video>
+
+<div>&nbsp;</div>
+{% next_button %}
+
+
+<div>&nbsp;</div>
+
+{% endblock %}

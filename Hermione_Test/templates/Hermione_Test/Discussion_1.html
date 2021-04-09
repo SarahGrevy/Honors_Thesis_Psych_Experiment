@@ -1,0 +1,117 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+Now you will answer the same question but this time you will answer<b> TOGETHER</b> with your partner. <br><br>
+Discuss with your partner what you personally thought and importantly<u> why</u> you rated it as you did. 
+It is important that you agree on an answer that reflects both of your opinions. You have mutual control over the slider below. Once you reach a mutual rating, click next.  
+
+<div>&nbsp;</div>
+
+
+<div><strong>How justifiable was Hermione's condescending tone towards Ron?</strong>
+
+<div></div>
+
+<BR><br>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+</style>
+
+
+
+<div class="slidecontainer">
+    <div style="float: left">Not at all justified </div>
+    <div style="float: right">Completely justified</div>
+  <input type="range" min="1" max="100" value="50" class="slider" id="mutual_judgment" name="mutual_judgment">
+
+  <p><span id="important_text"></span></p>
+</div>
+
+<!--<button onclick="move()" id = "changebutton" type="button"> Decrement </button>
+
+<button onclick="move2()" id = "changebutton" type="button"> Set to 75 </button> -->
+
+<script>
+    var slider = document.getElementById("mutual_judgment");
+
+    var time_to_move_on = document.getElementById("important_text");
+
+    slider.onchange = function() {
+        liveSend({"slider_value" : parseInt(slider.value), "disable": 0});
+    }
+
+    function liveRecv(payload) {
+        slider.value = payload["slider_value"];
+        if (payload["disable"]==1){
+            document.getElementById("mutual_judgment").disabled = true;
+            time_to_move_on.innerHTML = "<strong> Your partner has clicked next, please click next as well! </strong>";
+        }
+
+    }
+
+    function toggle_slider(){
+        if (document.getElementById("mutual_judgment").disabled == false){
+            liveSend({"slider_value" : parseInt(slider.value), "disable": 1});
+        } else {
+            document.getElementById("mutual_judgment").disabled = false // re-enable slider (so it can send its value)
+        }
+
+
+    }
+
+/*     function move(){
+        slider.stepDown();
+        output.innerHTML = slider.value;
+        }
+
+    function move2(){
+        slider.value = 75;
+        output.innerHTML = slider.value;
+        } */
+</script>
+
+
+
+<button name="next_slider" onclick="toggle_slider()" class="btn btn-primary btn-large">Next</button>
+<!-- {% next_button %} -->
+
+{% endblock %}
